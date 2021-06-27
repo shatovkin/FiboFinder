@@ -43,6 +43,7 @@ namespace FiboFinder
         List<Candle> candleList = quik.getCandleList("TQBR", "SBER", "H1", 30);
 
            decimal max = candleList.Max(x => x.High);
+           decimal min = candleList.Max(x => x.Close);
 
         }
     }
