@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FiboFinder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="FiboFinder" Height="500" Width="525"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        
+        <Border x:Name="Border1" Grid.Row="0" Grid.RowSpan="4" CornerRadius="5" Background="White" />
+        <Border Grid.Row="0" Grid.RowSpan="3" Background="AliceBlue" ></Border>
+        <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Margin="25, 100">
+            <ScrollViewer>
+                <TextBlock TextWrapping="Wrap" Opacity=".4" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="15" Height="169" Name="txt_logs"/>
+            </ScrollViewer>
+        </StackPanel>
+        <Button
+    Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Center"
+    Content="Подключиться к квику" Click="btn_connectToQuick" Margin="181,391,138,30" Height="Auto" Width="198"/>
     </Grid>
 </Window>

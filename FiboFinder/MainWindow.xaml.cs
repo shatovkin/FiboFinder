@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FiboFinder.quikSharp;
+using QuikSharp;
+using QuikSharp.DataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,27 @@ namespace FiboFinder
     /// </summary>
     public partial class MainWindow : Window
     {
+        private QuikConnection quik;
+        private Tool tool;
+
         public MainWindow()
         {
             InitializeComponent();
+            quik = new QuikConnection();
+        }
+
+        private void btn_connectToQuick(object sender, RoutedEventArgs e)
+        {
+
+            this.Dispatcher.Invoke((Action)(() =>
+                {
+                    txt_logs.Text = quik.connectToQuik();
+                }));
+
+        List<Candle> candleList = quik.getCandleList("TQBR", "SBER", "H1", 30);
+
+           decimal max = candleList.Max(x => x.High);
+
         }
     }
 }
