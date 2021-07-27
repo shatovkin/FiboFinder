@@ -2,7 +2,7 @@
 using QuikSharp.DataStructures;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace FiboFinder.quikSharp
 {
@@ -79,7 +79,6 @@ namespace FiboFinder.quikSharp
         {
 
             List<Candle> candleList = _quik.Candles.GetLastCandles(tool.ClassCode, tool.SecCode, getCandleTimeFrame(tool.TimeFrame), 1).Result;
-
             List<Candle> first = candleList.GetRange(10, 10);
             List<Candle> second = candleList.GetRange(0, 10);
 

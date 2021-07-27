@@ -118,13 +118,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Cat.cs" />
     <Compile Include="ComboItems.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="quikSharp\QuikConnection.cs" />
     <Compile Include="quikSharp\Tool.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ToolInfo.cs" />
+    <Compile Include="UtilClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -196,7 +196,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NewFolder1\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
