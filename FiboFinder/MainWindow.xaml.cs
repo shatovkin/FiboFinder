@@ -18,7 +18,7 @@ namespace FiboFinder
     public partial class MainWindow
     {
         private QuikConnection connectionQuik;
-        public BindableCollection<ComboItems> comboUnits { get; set; }
+        private BindableCollection<ComboItems> comboUnits { get; set; }
 
         private Tool tool;
 
