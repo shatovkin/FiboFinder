@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FiboFinder
 {
-    class Cat
+    public class UtilClass
     {
+       public static string directionShort = "Short";
+       public static string directionLong = "Long";
+       
     }
 }

@@ -64,7 +64,7 @@
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Margin="25,0,25,-300" Height="120">
             <ScrollViewer>
-                <TextBlock TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="15" Height="169" Name="txt_logs"/>
+                <TextBlock TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="15" Height="169" Name="txt_logs" HorizontalAlignment="Center"/>
             </ScrollViewer>
         </StackPanel>
         <Button

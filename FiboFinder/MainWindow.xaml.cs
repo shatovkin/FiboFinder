@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -45,10 +46,10 @@ namespace FiboFinder
 
                 decimal toolLastPrice = decimal.Parse(connectionQuik.getQuikExamplar().Trading.GetParamEx("TQBR", toolInfo.SecCode, "LAST").Result.ParamValue);
 
-                decimal priceIn = Math.Round(tool.LastPrice + 10 * tool.Step, tool.PriceAccuracy); 
+                decimal priceIn = Math.Round(tool.LastPrice + 10 * tool.Step, tool.PriceAccuracy);
                 //double difference = calculateDefferenceAmongPrices(double.Parse(tool.Preis), toolLastPrice);
 
-                if (toolInfo.Direction == "Long")
+                if (toolInfo.Direction == UtilClass.directionLong)
                 {
                     if (toolLastPrice == toolInfo.PreisPlane || toolLastPrice < toolInfo.PreisPlane)
                     {
@@ -139,7 +140,6 @@ namespace FiboFinder
                         }
                     }
                     toolInfoList.Add(tool);
-
                 }
                 counter++;
             }
@@ -148,14 +148,12 @@ namespace FiboFinder
 
         private string setDirection(int indexOfComboBox)
         {
-
             switch (indexOfComboBox)
             {
                 case 1:
-                    return "Long";
-
+                    return UtilClass.directionLong;
                 case 2:
-                    return "Short";
+                    return UtilClass.directionShort;
             }
             return null;
         }
