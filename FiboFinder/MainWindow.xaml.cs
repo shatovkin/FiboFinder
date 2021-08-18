@@ -19,7 +19,6 @@ namespace FiboFinder
     {
         private QuikConnection connectionQuik;
         private BindableCollection<ComboItems> comboUnits { get; set; }
-
         private Tool tool;
 
         public MainWindow()
@@ -27,7 +26,6 @@ namespace FiboFinder
             InitializeComponent();
             DataContext = new DataAccess();
             connectionQuik = new QuikConnection();
-
         }
 
         private void btn_connectToQuik(object sender, RoutedEventArgs e)
@@ -40,6 +38,8 @@ namespace FiboFinder
 
         private void btn_clickStart(object sender, RoutedEventArgs e)
         {
+            BuySellController buySellController = new BuySellController();
+
             foreach (ToolInfo toolInfo in fillToolInfoListsWithData())
             {
                 tool = new Tool(connectionQuik.getQuikExamplar(), toolInfo.SecCode, connectionQuik.getToolClass(toolInfo.SecCode));
@@ -47,58 +47,11 @@ namespace FiboFinder
                 decimal toolLastPrice = decimal.Parse(connectionQuik.getQuikExamplar().Trading.GetParamEx("TQBR", toolInfo.SecCode, "LAST").Result.ParamValue);
 
                 decimal priceIn = Math.Round(tool.LastPrice + 10 * tool.Step, tool.PriceAccuracy);
-                //double difference = calculateDefferenceAmongPrices(double.Parse(tool.Preis), toolLastPrice);
 
-                if (toolInfo.Direction == UtilClass.directionLong)
+                if (toolLastPrice == toolInfo.PreisPlane || toolLastPrice < toolInfo.PreisPlane)
                 {
-                    if (toolLastPrice == toolInfo.PreisPlane || toolLastPrice < toolInfo.PreisPlane)
-                    {
-                        try
-                        {
-                            new Thread(() =>
-                            {
-                                connectionQuik.getQuikExamplar()
-                            .Orders
-                            .SendLimitOrder(
-                                connectionQuik.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Buy, toolInfo.PreisPlane, 1);
-                            }).Start();
-                        }
-                        catch (Exception)
-                        {
-                            new Exception("не удалось выставить ордер на покупку");
-                        }
-                    }
+                    buySellController.setLimitOrder(toolInfo, tool, toolInfo.Direction, int.Parse(toolInfo.Quantity));
                 }
-                else
-                {
-                    try
-                    {
-                        new Thread(() =>
-                        {
-                            connectionQuik.getQuikExamplar()
-                        .Orders
-                        .SendLimitOrder(
-                            connectionQuik.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, 1);
-                        }).Start();
-                    }
-                    catch (Exception)
-                    {
-                        new Exception("не удалось выставить ордер на продажу");
-                    }
-                }
-            }
-
-        }
-
-        private double calculateDefferenceBetweenPrices(double preis, double toolLastPrice)
-        {
-            if (preis < toolLastPrice)
-            {
-                return ((toolLastPrice - preis) / preis) * 100;
-            }
-            else
-            {
-                return ((preis - toolLastPrice) / preis) * 100;
             }
         }
 

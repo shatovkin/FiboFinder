@@ -118,13 +118,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ComboItems.cs" />
-    <Compile Include="DataAccess.cs" />
+    <Compile Include="Controller\BuySellController.cs" />
+    <Compile Include="Models\ComboItems.cs" />
+    <Compile Include="Models\DataAccess.cs" />
     <Compile Include="quikSharp\QuikConnection.cs" />
     <Compile Include="quikSharp\Tool.cs" />
-    <Compile Include="ShellViewModel.cs" />
-    <Compile Include="ToolInfo.cs" />
-    <Compile Include="UtilClass.cs" />
+    <Compile Include="Controller\ShellViewModel.cs" />
+    <Compile Include="Models\ToolInfo.cs" />
+    <Compile Include="Models\UtilClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
