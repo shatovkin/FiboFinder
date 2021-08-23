@@ -23,6 +23,5 @@ namespace FiboFinder
             get { return color; }
             set { color = value; }
         }
-
     }
 }

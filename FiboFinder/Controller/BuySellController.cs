@@ -18,14 +18,12 @@ namespace FiboFinder
 
         public BuySellController()
         {
-
             quikConnection = new QuikConnection();
         }
 
-
         public void setLimitOrder(ToolInfo toolInfo, Tool tool, string operation, int volume)
         {
-            if (operation.Equals("Buy"))
+            if (operation.Equals("Long"))
             {
                 try
                 {
@@ -33,13 +31,11 @@ namespace FiboFinder
                     {
                         new Thread(() =>
                         {
-                         var limitOrder = quikConnection.getQuikExamplar()
-                        .Orders
-                        .SendLimitOrder(
-                            quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Buy, toolInfo.PreisPlane, volume);
+                            var limitOrder = quikConnection.getQuikExamplar()
+                           .Orders
+                           .SendLimitOrder(quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Buy, toolInfo.PreisPlane, volume);
                             existsLimitOrders.Add(limitOrder.Result);
-                        }).Start();
-                        
+                        });
                     }
                 }
                 catch (Exception)
@@ -55,13 +51,13 @@ namespace FiboFinder
                     {
                         new Thread(() =>
                     {
-                     var limitOrder = quikConnection.getQuikExamplar()
-                    .Orders
-                    .SendLimitOrder(
-                        quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume);
+                        var limitOrder = quikConnection.getQuikExamplar()
+                       .Orders
+                       .SendLimitOrder(
+                           quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume);
                         existsLimitOrders.Add(limitOrder.Result);
                     }).Start();
-                        
+
                     }
                 }
                 catch (Exception)
@@ -70,7 +66,6 @@ namespace FiboFinder
                 }
             }
         }
-
 
         public void removeLimitOrder(ToolInfo toolInfo, Tool tool, string operation, int volume)
         {
@@ -87,7 +82,7 @@ namespace FiboFinder
                         .KillOrder(
                                 existsLimitOrders.Find(x => x.SecCode == tool.SecurityCode));
                         }).Start();
-                        existsLimitOrders.RemoveAll(x=>x.SecCode == tool.SecurityCode);
+                        existsLimitOrders.RemoveAll(x => x.SecCode == tool.SecurityCode);
                     }
                 }
                 catch (Exception)
@@ -103,12 +98,13 @@ namespace FiboFinder
                     {
                         new Thread(() =>
                         {
-                            quikConnection.getQuikExamplar()
+                            var order = quikConnection.getQuikExamplar()
                         .Orders
                         .SendLimitOrder(
-                            quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume);
+                            quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume).Result;
+                            existsLimitOrders.Add(order);
                         }).Start();
-                        existsLimitOrders.Add(toolInfo);
+
                     }
                 }
                 catch (Exception)
@@ -117,7 +113,6 @@ namespace FiboFinder
                 }
             }
         }
-
 
         private bool checkToolExistInCollection(List<Order> orderCollection, Tool tool)
         {
@@ -135,24 +130,44 @@ namespace FiboFinder
         public void removeLimitOrder()
         {
 
-            foreach (ToolInfo toolInfo in existsLimitOrders)
-            {
-                Tool tool = new Tool(quikConnection.getQuikExamplar(), toolInfo.SecCode, quikConnection.getToolClass(toolInfo.SecCode));
+            //foreach (Order toolInfo in existsLimitOrders)
+            //{
+            //    Tool tool = new Tool(quikConnection.getQuikExamplar(), toolInfo.SecCode, quikConnection.getToolClass(toolInfo.SecCode));
 
-                if (toolInfo.Direction.Equals("Long"))
-                {
-                    var difference = UtilClass.calculateDefferenceBetweenPrices(double.Parse(toolInfo.PreisPlane.ToString()), double.Parse(tool.LastPrice.ToString()));
+            //    if (toolInfo.Direction.Equals("Long"))
+            //    {
+            //        var difference = UtilClass.calculateDefferenceBetweenPrices(double.Parse(toolInfo.PreisPlane.ToString()), double.Parse(tool.LastPrice.ToString()));
 
-                    if (difference > UtilClass.differenceToRemoveOrder)
-                    {
+            //        if (difference > UtilClass.differenceToRemoveOrder)
+            //        {
 
-                    }
-                }
-                else
-                {
+            //        }
+            //    }
+            //    else
+            //    {
 
-                }
-            }
+            //    }
+            //}
+
+        }
+
+        public void createStopOrder()
+        {
+            //StopOrder stopOrder = new StopOrder()
+            //{
+            //    Account = tool.AccountID,
+            //    ClassCode = tool.ClassCode,
+            //    ClientCode = Properties.Settings.Default.ClientCode,
+            //    Quantity = 1,
+            //    StopOrderType = StopOrderType.StopLimit,
+            //    SecCode = tool.SecurityCode,
+            //    ConditionPrice = toolInfo.PreisPlane + 0.5m,
+            //    Price = toolInfo.PreisPlane,
+            //    Operation = Operation.Buy
+            //};
+            //var limitOrder = quikConnection.getQuikExamplar()
+            //  .StopOrders.CreateStopOrder(stopOrder);
+
 
         }
     }
