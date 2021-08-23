@@ -1,14 +1,17 @@
 ﻿using Caliburn.PresentationFramework;
 using FiboFinder.quikSharp;
+using FiboFinder.views;
 using QuikSharp;
 using QuikSharp.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace FiboFinder
 {
@@ -48,10 +51,10 @@ namespace FiboFinder
 
                 decimal priceIn = Math.Round(tool.LastPrice + 10 * tool.Step, tool.PriceAccuracy);
 
-                if (toolLastPrice == toolInfo.PreisPlane || toolLastPrice < toolInfo.PreisPlane)
-                {
+                //if (priceIn == toolInfo.PreisPlane || toolLastPrice < toolInfo.PreisPlane)
+                //{
                     buySellController.setLimitOrder(toolInfo, tool, toolInfo.Direction, int.Parse(toolInfo.Quantity));
-                }
+                //}
             }
         }
 
@@ -109,6 +112,13 @@ namespace FiboFinder
                     return UtilClass.directionShort;
             }
             return null;
+        }
+
+        private void menu_click_userOptions(object sender, RoutedEventArgs e)
+        {
+            UserOptions view = new UserOptions(this);
+            view.Owner = Application.Current.MainWindow;
+            view.Show();
         }
     }
 }
