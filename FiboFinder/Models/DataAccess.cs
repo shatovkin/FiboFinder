@@ -16,7 +16,6 @@ namespace FiboFinder
         }
         public List<ComboItems> getComboItems()
         {
-
             List<ComboItems> itemList = new List<ComboItems>();
 
             ComboItems comItem1 = new ComboItems();

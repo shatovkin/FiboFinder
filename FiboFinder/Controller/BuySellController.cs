@@ -3,14 +3,12 @@ using QuikSharp.DataStructures;
 using QuikSharp.DataStructures.Transaction;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FiboFinder
 {
-
     public class BuySellController
     {
         List<Order> existsLimitOrders = new List<Order>();
@@ -23,19 +21,15 @@ namespace FiboFinder
 
         public void setLimitOrder(ToolInfo toolInfo, Tool tool, string operation, int volume)
         {
+            volume = getLotAmounts(tool, volume);
+
             if (operation.Equals("Long"))
             {
                 try
                 {
                     if (!checkToolExistInCollection(existsLimitOrders, tool))
                     {
-                        new Thread(() =>
-                        {
-                            var limitOrder = quikConnection.getQuikExamplar()
-                           .Orders
-                           .SendLimitOrder(quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Buy, toolInfo.PreisPlane, volume);
-                            existsLimitOrders.Add(limitOrder.Result);
-                        });
+                        createStopOrder(tool, toolInfo, volume);
                     }
                 }
                 catch (Exception)
@@ -49,15 +43,7 @@ namespace FiboFinder
                 {
                     if (!checkToolExistInCollection(existsLimitOrders, tool))
                     {
-                        new Thread(() =>
-                    {
-                        var limitOrder = quikConnection.getQuikExamplar()
-                       .Orders
-                       .SendLimitOrder(
-                           quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume);
-                        existsLimitOrders.Add(limitOrder.Result);
-                    }).Start();
-
+                        createStopOrder(tool, toolInfo, volume);
                     }
                 }
                 catch (Exception)
@@ -65,6 +51,21 @@ namespace FiboFinder
                     new Exception("не удалось выставить ордер на продажу");
                 }
             }
+        }
+
+        private int getLotAmounts(Tool tool, int volume)
+        {
+            if (volume == 0)
+            {
+                var currentBalance = Properties.Settings.Default.OpenBalance; //48 000
+                var preisProLot = (tool.LastPrice * tool.Lot); // 1000
+
+                var maxLotAvaiability = (currentBalance / double.Parse(preisProLot.ToString()) - 2); // 48
+                int maxLots = (int)Math.Floor(maxLotAvaiability);
+
+                return maxLots;
+            }
+            return volume;
         }
 
         public void removeLimitOrder(ToolInfo toolInfo, Tool tool, string operation, int volume)
@@ -77,7 +78,7 @@ namespace FiboFinder
                     {
                         new Thread(() =>
                         {
-                            quikConnection.getQuikExamplar()
+                            quikConnection.getQuikExemplar()
                         .Orders
                         .KillOrder(
                                 existsLimitOrders.Find(x => x.SecCode == tool.SecurityCode));
@@ -98,13 +99,12 @@ namespace FiboFinder
                     {
                         new Thread(() =>
                         {
-                            var order = quikConnection.getQuikExamplar()
+                            var order = quikConnection.getQuikExemplar()
                         .Orders
                         .SendLimitOrder(
                             quikConnection.getToolClass(toolInfo.SecCode), toolInfo.SecCode, tool.AccountID, Operation.Sell, toolInfo.PreisPlane, volume).Result;
                             existsLimitOrders.Add(order);
                         }).Start();
-
                     }
                 }
                 catch (Exception)
@@ -116,7 +116,6 @@ namespace FiboFinder
 
         private bool checkToolExistInCollection(List<Order> orderCollection, Tool tool)
         {
-
             foreach (var order in orderCollection)
             {
                 if (order.SecCode.Equals(tool.SecurityCode))
@@ -169,6 +168,27 @@ namespace FiboFinder
             //  .StopOrders.CreateStopOrder(stopOrder);
 
 
+        }
+
+        private void createStopOrder(Tool tool, ToolInfo toolInfo, int volume)
+        {
+            StopOrder stopOrder = new StopOrder
+            {
+                Account = tool.AccountID,
+                ClassCode = tool.ClassCode,
+                ClientCode = toolInfo.ClientCode,
+                Quantity = volume,
+                StopOrderType = StopOrderType.StopLimit,
+                SecCode = tool.SecurityCode,
+                Condition = QuikSharp.DataStructures.Condition.LessOrEqual,
+                Operation = toolInfo.Direction == "Long" ? Operation.Buy : Operation.Sell,
+                Price = toolInfo.PreisPlane
+            };
+
+            new Thread(() =>
+           {
+               quikConnection.getQuikExemplar().StopOrders.CreateStopOrder(stopOrder);
+           }).Start();
         }
     }
 }

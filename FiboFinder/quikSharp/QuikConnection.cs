@@ -2,11 +2,10 @@
 using QuikSharp.DataStructures;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FiboFinder.quikSharp
 {
-    class QuikConnection
+    public class QuikConnection
     {
         Quik _quik;
         bool isServerConnected = false;
@@ -70,14 +69,13 @@ namespace FiboFinder.quikSharp
             return CandleInterval.H1;
         }
 
-        public Quik getQuikExamplar()
+        public Quik getQuikExemplar()
         {
             return _quik;
         }
 
         private List<Candle> compareLastTwoDays(ToolInfo tool)
         {
-
             List<Candle> candleList = _quik.Candles.GetLastCandles(tool.ClassCode, tool.SecCode, getCandleTimeFrame(tool.TimeFrame), 1).Result;
             List<Candle> first = candleList.GetRange(10, 10);
             List<Candle> second = candleList.GetRange(0, 10);

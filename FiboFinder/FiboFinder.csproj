@@ -52,6 +52,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>buysellIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Core, Version=2.0.0.61292, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.2.0\lib\net40\Caliburn.Core.dll</HintPath>
@@ -119,6 +122,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controller\BuySellController.cs" />
+    <Compile Include="Controller\PositionCalculation.cs" />
+    <Compile Include="Controller\UserAccountInformationService.cs" />
+    <Compile Include="Models\AccountInfo.cs" />
     <Compile Include="Models\ComboItems.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="quikSharp\QuikConnection.cs" />
@@ -173,7 +179,9 @@
     <None Include="lua\Quik_2.lua" />
     <None Include="lua\socket.lua" />
     <None Include="lua\USAGE.RU.md" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -184,6 +192,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="buysellIcon.ico" />
     <Content Include="lua\clibs64\5.1_MD\socket\core.dll" />
     <Content Include="lua\clibs64\5.1_MT\socket\core.dll" />
     <Content Include="lua\clibs64\53_MD\socket\core.dll" />

@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FiboFinder"
         mc:Ignorable="d"
-        Title="FiboFinder" Height="550" Width="600"
+        Title="FiboFinder" Height="450" Width="480"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -36,7 +37,7 @@
                         <!--<MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />-->
                     </MenuItem>
                 </Menu>
-                <!--<TextBox AcceptsReturn="True" />-->
+
             </DockPanel>
         </StackPanel>
         <StackPanel>
@@ -44,55 +45,67 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="Инст:" Margin="225,0,0,29"/>
-                <Label Content="Цена:" Margin="357,0,0,0"/>
-                <Label Content="Кол-во:" Margin="510,0,0,0"/>
-
-                <StackPanel Orientation="Vertical" Margin="0,0,0,-350" Name="mainStackPanel">
-                    <StackPanel Orientation="Horizontal" Width="500" Height="120" Margin="0,-20,0,0" Name="stackPan1">
-                        <Label Content="1)" Grid.Column="0" Margin="0,25,0,20" Width="24" Height="25"/>
-                        <ComboBox Grid.Row="0" Margin="0,0,0,0" Width="150" SelectedIndex="0" ItemsSource="{Binding NameCollection}" x:Name="cbox_1">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Ellipse  Fill="{Binding Color}" Width="15" Margin="0,0,10,0"></Ellipse>
-                                        <TextBlock Text="{Binding ItemName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBox Grid.Column="0" Name="tool1" Margin="10,50,0,46" Width="111" Text="SBER"/>
-                        <TextBox Grid.Column="1" Name="preis1" Margin="20,50,0,48" Width="128" Height="22" Text="311,81"/>
-                        <TextBox Grid.Column="2" Name="amount1" Margin="30,50,0,46"  Width="40" Height="22" Text="1"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Width="550" Height="122" Margin="-30,-70,0,0" Name="stackPan2">
-                        <Label Content="2)" Grid.Column="0" Margin="40,45,0,46" Width="24"/>
-                        <ComboBox Grid.Row="0" Margin="0,0,0,0" Width="150" SelectedIndex="0" ItemsSource="{Binding NameCollection}" x:Name="cbox_2">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Ellipse  Fill="{Binding Color}" Width="15" Margin="0,0,10,0"></Ellipse>
-                                        <TextBlock Text="{Binding ItemName}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBox Grid.Column="0" Name="tool2" Margin="10,40,0,49" Width="111" Height="25" Text="SBER"/>
-                        <TextBox Grid.Column="1" Name="preis2" Margin="20,40,0,48" Width="128" Height="25" Text="311,81"/>
-                        <TextBox Grid.Column="2" Name="amount2" Margin="30,40,0,46"  Width="40" Height="25" Text="1"/>
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="130,-2,0,0">
+                    <Label Content="Вариант:" Margin="0,0,0,0" FontSize="16"/>
+                    <Label Content="Инст:" Margin="10,0,0,0" FontSize="16"/>
+                    <Label Content="Цена:" Margin="15,0,0,0" FontSize="16"/>
+                    <Label Content="Кол-во:" Margin="10,0,0,0" FontSize="16"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Bottom" Margin="25,0,25,-300" Height="120">
-                    <ScrollViewer>
-                        <TextBlock TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="15" Height="169" Name="txt_logs" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Vertical" Margin="0,0,0,-268" Name="mainStackPanel">
+                    <StackPanel Orientation="Horizontal" Width="500" Height="120" Margin="0,-20,0,0" Name="stackPan1">
+                        <Label Content="1)" Grid.Column="0" Margin="0,25,0,20" Width="24" Height="25" FontSize="16"/>
+                        <ComboBox Grid.Row="0" Margin="0,0,0,0" Width="100" SelectedIndex="0" ItemsSource="{Binding NameCollection}" x:Name="cbox_1">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse  Fill="{Binding Color}" Width="15" Margin="0,0,10,0"></Ellipse>
+                                        <TextBlock Text="{Binding ItemName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox Grid.Row="0" Margin="15,0,0,0" Width="75" SelectedIndex="0" x:Name="variant1" FontSize="16">
+                            <ComboBoxItem IsSelected="True">Сверху</ComboBoxItem>
+                            <ComboBoxItem>Снизу</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Grid.Column="0" Name="tool1" Margin="12,50,0,46" Width="50" Height="25" Text="SBER" FontSize="16"/>
+                        <TextBox Grid.Column="1" Name="preis1" Margin="9,50,0,48" Width="50" Height="25" FontSize="16" Text="200,0"/>
+                        <TextBox Grid.Column="2" Name="amount1" Margin="20,50,0,46"  Width="40" Height="25" FontSize="16" Text="1"/>
+                    </StackPanel>
+
+
+                    <StackPanel Orientation="Horizontal" Width="500" Height="40" Margin="0,-20,0,0" Name="stackPan2">
+                        <Label Content="2)" Margin="0,8,0,-10" Width="24" FontSize="16"/>
+                        <ComboBox Grid.Row="0" Margin="0,0,0,0" Width="100" SelectedIndex="0" ItemsSource="{Binding NameCollection}" x:Name="cbox_2">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse  Fill="{Binding Color}" Width="15" Margin="0,0,10,0"/>
+                                        <TextBlock Text="{Binding ItemName}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <ComboBox Grid.Row="0" Margin="15,0,0,0" Width="75" SelectedIndex="0" x:Name="variant2" FontSize="16">
+                            <ComboBoxItem IsSelected="True">Сверху</ComboBoxItem>
+                            <ComboBoxItem>Снизу</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Grid.Column="0" x:Name="tool2" Margin="12,0,0,0" Width="50" Height="25" Text="SBER" FontSize="16"/>
+                        <TextBox Grid.Column="1" x:Name="preis2" Margin="9,0,0,0" Width="50" Height="25" FontSize="16" Text="200,0"/>
+                        <TextBox Grid.Column="2" x:Name="amount2" Margin="20,0,0,0"  Width="40" Height="25" FontSize="16" Text="1"/>
+                    </StackPanel>
+
+
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Center"
+                        Content="Старт" Click="btn_clickStart" Margin="116,140,106,10" Height="40" Width="250"/>
+                    <Button Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Center"
+                        Content="Подключиться к квику" Click="btn_connectToQuik" Margin="116,0,106,100" Height="40" Width="250"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Bottom" Margin="25,0,25,-130" Height="120">
+                    <ScrollViewer Height="120">
+                        <TextBlock TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Visible" FontSize="15" Height="169" x:Name="txt_logs" HorizontalAlignment="Center"/>
                     </ScrollViewer>
                 </StackPanel>
-                <Button
-    Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Center"
-    Content="Подключиться к квику" Click="btn_connectToQuik" Margin="110,0,100,-650" Height="40" Width="250"/>
-                <Button
-    Style="{StaticResource MaterialDesignRaisedAccentButton}" HorizontalAlignment="Center"
-    Content="Старт" Click="btn_clickStart" Margin="110,0,100,-750" Height="40" Width="250"/>
             </Grid>
         </StackPanel>
     </StackPanel>

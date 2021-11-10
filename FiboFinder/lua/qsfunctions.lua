@@ -134,6 +134,7 @@ end
 -- Выводит на график метку
 function qsfunctions.addLabel(msg)
 	local spl = split(msg.data, "|")
+	message(spl[1])
 	local price, curdate, curtime, qty, path, id, algmnt, bgnd = spl[1], spl[2], spl[3], spl[4], spl[5], spl[6], spl[7], spl[8]
 	label = {
 			TEXT = "",
@@ -142,16 +143,16 @@ function qsfunctions.addLabel(msg)
 			YVALUE = tostring(price),
 			DATE = tostring(curdate),
 			TIME = tostring(curtime),
-			R = 255,
-			G = 255,
+			R = 0,
+			G = 0,
 			B = 255,
-			TRANSPARENCY = 0,
+			TRANSPARENCY = 1,
 			TRANSPARENT_BACKGROUND = bgnd,
 			FONT_FACE_NAME = "Arial",
 			FONT_HEIGHT = "15",
 			HINT = " " .. tostring(price) .. " " .. tostring(qty)
 			}
-	local res = AddLabel(id, label)
+	local res = AddLabel(id, "Chasovik")
 	msg.data = res
 	return msg
 end

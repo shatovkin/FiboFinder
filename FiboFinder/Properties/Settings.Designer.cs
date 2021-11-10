@@ -34,5 +34,185 @@ namespace FiboFinder.Properties {
                 this["ClientCode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1ClassCode {
+            get {
+                return ((string)(this["Instr1ClassCode"]));
+            }
+            set {
+                this["Instr1ClassCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1SecCode {
+            get {
+                return ((string)(this["Instr1SecCode"]));
+            }
+            set {
+                this["Instr1SecCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1PreisPlane {
+            get {
+                return ((string)(this["Instr1PreisPlane"]));
+            }
+            set {
+                this["Instr1PreisPlane"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1Quantity {
+            get {
+                return ((string)(this["Instr1Quantity"]));
+            }
+            set {
+                this["Instr1Quantity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1Variant {
+            get {
+                return ((string)(this["Instr1Variant"]));
+            }
+            set {
+                this["Instr1Variant"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr1Direction {
+            get {
+                return ((string)(this["Instr1Direction"]));
+            }
+            set {
+                this["Instr1Direction"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2ClassCode {
+            get {
+                return ((string)(this["Instr2ClassCode"]));
+            }
+            set {
+                this["Instr2ClassCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2SecCode {
+            get {
+                return ((string)(this["Instr2SecCode"]));
+            }
+            set {
+                this["Instr2SecCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2PreisPlane {
+            get {
+                return ((string)(this["Instr2PreisPlane"]));
+            }
+            set {
+                this["Instr2PreisPlane"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2Quantity {
+            get {
+                return ((string)(this["Instr2Quantity"]));
+            }
+            set {
+                this["Instr2Quantity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2Variant {
+            get {
+                return ((string)(this["Instr2Variant"]));
+            }
+            set {
+                this["Instr2Variant"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Instr2Direction {
+            get {
+                return ((string)(this["Instr2Direction"]));
+            }
+            set {
+                this["Instr2Direction"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FirmId {
+            get {
+                return ((string)(this["FirmId"]));
+            }
+            set {
+                this["FirmId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double OpenBalance {
+            get {
+                return ((double)(this["OpenBalance"]));
+            }
+            set {
+                this["OpenBalance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double CurrentLimit {
+            get {
+                return ((double)(this["CurrentLimit"]));
+            }
+            set {
+                this["CurrentLimit"] = value;
+            }
+        }
     }
 }
