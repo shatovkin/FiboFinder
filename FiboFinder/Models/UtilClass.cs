@@ -10,6 +10,8 @@ namespace FiboFinder
     {
         public static string directionShort = "Short";
         public static string directionLong = "Long";
+        public static string variantRebound = "Сверху";
+        public static string variantBreaking = "Снизу";
         public static double differenceToRemoveOrder = 0.5;
 
         public static double calculateDefferenceBetweenPrices(double preis, double toolLastPrice)

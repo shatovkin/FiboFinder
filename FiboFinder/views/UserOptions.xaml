@@ -8,7 +8,7 @@
         Title="Настройки пользователя" Height="480" Width="300">
     <StackPanel>
         <StackPanel>
-            <Grid ShowGridLines="False" Margin="0,20,0,0">
+            <Grid ShowGridLines="False" Margin="0,20,0,0" Height="110">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -16,8 +16,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Content="Номер клиента: " Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
-                <TextBox x:Name="clientCodeTxt" Grid.Row="0" Grid.Column="1"  FontSize="16" MaxLength="6" Text=""  PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Center" Padding="5,5,0,0" Margin="0,0,5,0" BorderBrush="AliceBlue" Width="145"/>
+                <Label Content="Номер клиента: " Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="33" Margin="0,1,0,-3"></Label>
+                <TextBox x:Name="clientCodeTxt" Grid.Row="0" Grid.Column="1"  FontSize="16" Text="" HorizontalAlignment="Center" Padding="5,0" Margin="7,9,10,-4" BorderBrush="AliceBlue" Width="147" Height="25" TextChanged="clientCodeTxt_TextChanged"/>
+                <Label Content="Фирма : " Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="54,35,4,-35" Height="31" RenderTransformOrigin="0.5,0.5" Width="70"/>
+                <TextBox x:Name="firmId" Grid.Row="0" Grid.Column="1"  FontSize="16" Text="" HorizontalAlignment="Center" Padding="5,0" Margin="7,40,12,-35" BorderBrush="AliceBlue" Width="145" Height="25"/>
             </Grid>
         </StackPanel>
         <StackPanel HorizontalAlignment="Right" Margin="0,20,10,0">
